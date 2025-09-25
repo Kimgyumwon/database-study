@@ -152,12 +152,13 @@ VALUES
 	WHERE stock <= 10;
 
 -- 문제 6
--- 카테고리가 '생활용품'이고 가격이 100,000원 이상이거나, 재고가 50개 이상인 제품의 제품명, 카테고리, 재고를 조회하세요.
+-- 카테고리가 '생활용품'이고 가격이 100,000원 이상이거나,
+-- 재고가 50개 이상인 제품의 제품명, 카테고리, 재고를 조회하세요.
 
 -- 정답: 
 	SELECT name , category , stock
 	FROM products
-	WHERE category = '생활용품' AND (price >= 100000 OR stock >= 50);
+	WHERE (category = '생활용품' AND price >= 100000) OR stock >= 50;
 
 
 -- 문제 7
@@ -165,9 +166,10 @@ VALUES
 -- 해당 제품의 제품명, 재고, 할인된 가격을 조회하세요.
 
 -- 정답:
-	SELECT name , category , stock
+	SELECT name, stock, price * 0.7 AS final_price
 	FROM products
-	WHERE category = '생활용품' AND (price >= 100000 OR stock >= 50);
+	WHERE category = '전자기기' AND stock <= 10;
+
 
 
 -- 문제 8
