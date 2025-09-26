@@ -117,7 +117,7 @@ CREATE TABLE schedules ( id INTEGER,
 
 WHERE customer_name LIKE '박__';
 
--- 정답: 박 으로 시작하는 이름 두글자
+-- 정답: 박 으로 시작하는 이름 3글자
 
 
 -- 문제 3
@@ -255,7 +255,8 @@ WHERE event_date BETWEEN '2023-10-01' AND '2023-12-31' ORDER BY event_date DESC;
 -- 정답:
 SELECT title , start_time
 FROM  events
-WHERE (title LIKE '%컨퍼런스%' OR title LIKE '%컨트리뷰션%') AND HOUR(start_time) >= 11;
+WHERE (title LIKE '%컨퍼런스%' OR title LIKE '%컨트리뷰션%')
+  AND HOUR(start_time) >= 11;
 
 
 
@@ -266,6 +267,7 @@ WHERE (title LIKE '%컨퍼런스%' OR title LIKE '%컨트리뷰션%') AND HOUR(s
 -- 정답:
 SELECT title , event_date ,start_time
 FROM  events
-WHERE event_date BETWEEN '2023-11-1' AND '2023-12-31'AND HOUR(start_time) >= 14;
+WHERE (event_date BETWEEN '2023-11-1' AND '2023-12-31')
+	AND HOUR(start_time) >= 14;
 
 
