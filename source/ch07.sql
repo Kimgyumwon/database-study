@@ -336,7 +336,6 @@ FROM users u
 JOIN photos p 
   ON u.id = p.user_id
   AND nickname = '홍팍';
-  
 -- 2. 특정 사용자가 올린 사진의 좋아요 개수
 -- 예: 홍팍이 올린 모든 사진의 좋아요 개수는?
 SELECT COUNT(*)
@@ -359,7 +358,7 @@ JOIN photos p ON c.photo_id = p.id;
 
 SELECT 
 	body AS '댓글 내용',
-    filename AS 파일명
+	filename AS 파일명
 FROM comments c
 LEFT JOIN photos p ON c.photo_id = p.id;
 

@@ -1,3 +1,4 @@
+-- Active: 1758675368804@@127.0.0.1@3306@library
 -- 1. 조인 확인 문제
 
 -- 문제 1
@@ -162,50 +163,45 @@ VALUES
 -- 모든 회원의 이름, 생년월일, 주소를 조회하세요.(회원 프로필이 없는 회원은 제외)
 
 -- 정답:
-SELECT name, date_of_birth, address
-FROM members m
-JOIN member_profiles mp ON m.id = mp.member_id;
-
+SELECT M.name , member_profiles.date_of_birth , member_profiles.address
+FROM members M
+JOIN member_profiles ON member_profiles.member_id = M.id ;
 
 -- 문제 2
 -- 모든 회원의 이름, 생년월일, 주소를 조회하세요.(회원 프로필이 없는 경우 NULL로 출력)
 
 -- 정답:
-SELECT name, date_of_birth, address
+SELECT m.name , mp.date_of_birth , mp.address
 FROM members m
-LEFT JOIN member_profiles mp ON m.id = mp.member_id;
+LEFT JOIN member_profiles mp ON mp.member_id = m.id;
 
 
 -- 문제 3
 -- 대출 기록을 보고 도서를 빌려 간 회원명과 대출한 도서명을 조회하세요.
 
 -- 정답:
-SELECT m.name, b.title
-FROM borrow_records br
-JOIN members m ON br.member_id = m.id
-JOIN books b ON br.book_id = b.id;
-
+SELECT m.name AS 회원명, b.title AS 도서명
+FROM books b
+JOIN borrow_records br ON b.id = br.book_id
+JOIN members m ON m.id = br.member_id;
 
 -- 문제 4
 -- 모든 도서명과 대출 날짜를 조회하세요.(대출되지 않은 도서는 NULL로 출력)
 
 -- 정답:
-SELECT b.title, br.borrow_date
+SELECT b.title AS 도서명 , br.borrow_date AS '대출 날짜' 
 FROM books b
 LEFT JOIN borrow_records br ON b.id = br.book_id;
-
 
 -- 문제 5
 -- 회원과 같은 이름을 가진 직원의 이름과 역할을 조회하세요.
 
 -- 정답:
+-- 관계 설정 없이도 JOIN을 할 수 있다는 것을 보여줌
+-- 일반적으로는 관계 있는 테이블끼리 JOIN 수행
 SELECT ls.name, ls.role
 FROM members m
 JOIN library_staff ls ON m.name = ls.name;
--- 관계 설정 없이도 JOIN을 할 수 있다는 것을 보여줌
--- 일반적으로는 관계 있는 테이블끼리 JOIN 수행
-
-
 -- 문제 6
 -- 모든 회원과 직원을 대상으로 도서관에서 주최하는 기념 행사에 초대장을 보내려고 합니다. 
 -- 모든 회원과 도서관 직원의 이름을 하나의 목록으로 출력하세요.(중복된 이름은 제거)
@@ -214,4 +210,3 @@ JOIN library_staff ls ON m.name = ls.name;
 SELECT name FROM members
 UNION
 SELECT name FROM library_staff;
-
