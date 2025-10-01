@@ -377,8 +377,3 @@ JOIN orders o ON o.user_id = u.id;
 -- (ㅁ) EXISTS
 
 -- 정답: ㄷ ㄱ ㄴ ㄹ ㅁ
-
-
-
-
-
