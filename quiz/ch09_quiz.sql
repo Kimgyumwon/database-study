@@ -209,7 +209,7 @@ FROM (
 	FROM employees e
 	GROUP BY department_id
 ) sub
-JOIN departments d ON sub.department_id = d.id;
+LEFT JOIN departments d ON sub.department_id = d.id;
 
 -- 문제 4: JOIN 절에서의 서브쿼리
 -- 가장 높은 급여를 받은 직원의 이름과 급여를 조회하세요.
